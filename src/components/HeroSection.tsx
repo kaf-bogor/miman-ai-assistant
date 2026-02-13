@@ -34,7 +34,7 @@ const HeroSection = () => {
             <EmailForm className="max-w-lg" />
 
             <p className="text-xs text-muted-foreground mt-4">
-              Gratis untuk early adopters. Tanpa kartu kredit.
+              Gratis 1 bulan pertama untuk early adopters. Tanpa kartu kredit.
             </p>
           </motion.div>
 
