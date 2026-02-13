@@ -18,7 +18,7 @@ const FinalCTASection = () => {
             Siap Punya Admin AI Sendiri?
           </h2>
           <p className="text-muted-foreground mb-8">
-            Daftar sekarang dan jadi yang pertama mencoba miman.id. Gratis untuk early adopters!
+            Daftar sekarang dan jadi yang pertama mencoba miman.id. Gratis 1 bulan pertama untuk early adopters!
           </p>
           <EmailForm className="max-w-md mx-auto" />
         </motion.div>

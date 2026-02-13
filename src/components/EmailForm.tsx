@@ -26,10 +26,30 @@ const EmailForm = ({ className = "" }: EmailFormProps) => {
     }
 
     setLoading(true);
-    // Simulate API call
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const body = new URLSearchParams();
+      body.set("form-name", "early-access");
+      body.set("email", result.data);
+
+      const res = await fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body,
+      });
+
+      if (!res.ok) {
+        const message = await res.text().catch(() => "");
+        throw new Error(message || "Gagal mengirim. Coba lagi ya.");
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Gagal mengirim. Coba lagi ya.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,11 +71,15 @@ const EmailForm = ({ className = "" }: EmailFormProps) => {
           <motion.form
             key="form"
             onSubmit={handleSubmit}
+            name="early-access"
+            data-netlify="true"
             className="flex flex-col sm:flex-row gap-3"
           >
+            <input type="hidden" name="form-name" value="early-access" />
             <div className="flex-1">
               <input
                 type="email"
+                name="email"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
